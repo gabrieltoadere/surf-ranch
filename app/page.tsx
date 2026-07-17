@@ -1,65 +1,59 @@
-import Image from "next/image";
+'use client'
+
+import { motion } from 'framer-motion'
+import Navbar from '@/components/navbar'
+import ScrollHero from '@/components/scroll-hero'
+import Features from '@/components/features'
+import Testimonials from '@/components/testimonials'
+import Footer from '@/components/footer'
+
+function StatsBand() {
+  const stats = [
+    { value: '6ft', label: 'Perfect barrel height' },
+    { value: '90s', label: 'Wave interval' },
+    { value: '12', label: 'Acres of privacy' },
+    { value: '24h', label: 'Private access' },
+  ]
+  return (
+    <section id="waves" className="bg-void py-16 px-6" style={{ borderTop: '1px solid rgba(250,250,249,0.05)', borderBottom: '1px solid rgba(250,250,249,0.05)' }}>
+      <div className="max-w-5xl mx-auto grid grid-cols-2 md:grid-cols-4 gap-8">
+        {stats.map((s, i) => (
+          <motion.div key={s.label} initial={{ opacity: 0, y: 24 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true, margin: '-60px' }} transition={{ duration: 0.7, delay: i * 0.1, ease: [0.22, 1, 0.36, 1] }} className="flex flex-col gap-2">
+            <div className="text-[clamp(2rem,4vw,3.5rem)] font-light text-bone leading-none" style={{ fontFamily: 'var(--font-bodoni)', fontStyle: 'italic' }}>{s.value}</div>
+            <div className="text-[10px] tracking-[0.25em] uppercase text-white/35" style={{ fontFamily: 'var(--font-jost)' }}>{s.label}</div>
+          </motion.div>
+        ))}
+      </div>
+    </section>
+  )
+}
+
+function Manifesto() {
+  return (
+    <section className="bg-void py-36 px-6">
+      <div className="max-w-4xl mx-auto text-center">
+        <motion.div initial={{ opacity: 0, y: 40 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true, margin: '-80px' }} transition={{ duration: 1.1, ease: [0.22, 1, 0.36, 1] }}>
+          <div className="w-8 h-px mx-auto mb-12 bg-kelp" />
+          <p className="text-[clamp(1.6rem,4vw,3rem)] font-light leading-[1.4] italic text-white/80" style={{ fontFamily: 'var(--font-bodoni)' }}>
+            &ldquo;The ocean does not give perfect waves to just anyone. We built a place where it has no choice.&rdquo;
+          </p>
+          <p className="mt-10 text-[10px] tracking-[0.35em] uppercase text-kelp" style={{ fontFamily: 'var(--font-jost)' }}>— Founders, Crystal Point</p>
+        </motion.div>
+      </div>
+    </section>
+  )
+}
 
 export default function Home() {
   return (
-    <div className="flex flex-col flex-1 items-center justify-center bg-zinc-50 font-sans dark:bg-black">
-      <main className="flex flex-1 w-full max-w-3xl flex-col items-center justify-between py-32 px-16 bg-white dark:bg-black sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={100}
-          height={20}
-          priority
-        />
-        <div className="flex flex-col items-center gap-6 text-center sm:items-start sm:text-left">
-          <h1 className="max-w-xs text-3xl font-semibold leading-10 tracking-tight text-black dark:text-zinc-50">
-            To get started, edit the page.tsx file.
-          </h1>
-          <p className="max-w-md text-lg leading-8 text-zinc-600 dark:text-zinc-400">
-            Looking for a starting point or more instructions? Head over to{" "}
-            <a
-              href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Templates
-            </a>{" "}
-            or the{" "}
-            <a
-              href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Learning
-            </a>{" "}
-            center.
-          </p>
-        </div>
-        <div className="flex flex-col gap-4 text-base font-medium sm:flex-row">
-          <a
-            className="flex h-12 w-full items-center justify-center gap-2 rounded-full bg-foreground px-5 text-background transition-colors hover:bg-[#383838] dark:hover:bg-[#ccc] md:w-[158px]"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={16}
-              height={16}
-            />
-            Deploy Now
-          </a>
-          <a
-            className="flex h-12 w-full items-center justify-center rounded-full border border-solid border-black/[.08] px-5 transition-colors hover:border-transparent hover:bg-black/[.04] dark:border-white/[.145] dark:hover:bg-[#1a1a1a] md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Documentation
-          </a>
-        </div>
-      </main>
-    </div>
-  );
+    <main className="bg-void text-bone">
+      <Navbar />
+      <ScrollHero />
+      <StatsBand />
+      <Manifesto />
+      <Features />
+      <Testimonials />
+      <Footer />
+    </main>
+  )
 }
