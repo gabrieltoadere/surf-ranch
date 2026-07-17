@@ -59,7 +59,7 @@ export default function ScrollHero() {
 
     for (let i = 0; i < FRAME_COUNT; i++) {
       const img = new Image()
-      img.src = `/frames/frame_${String(i + 1).padStart(4, '0')}.jpg`
+      img.src = `${process.env.NEXT_PUBLIC_BASE_PATH ?? ''}/frames/frame_${String(i + 1).padStart(4, '0')}.jpg`
       img.onload = () => {
         frames[i] = img
         if (!firstShown && i === 0) {
